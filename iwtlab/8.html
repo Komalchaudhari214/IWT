@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Operations and Slideshow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: auto;
+        }
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Arithmetic Operations</h1>
+    <p>Addition: <span id="addition"></span></p>
+    <p>Subtraction: <span id="subtraction"></span></p>
+    <p>Multiplication: <span id="multiplication"></span></p>
+    <p>Division: <span id="division"></span></p>
+
+    <script>
+        // User-defined functions for arithmetic operations
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b !== 0) {
+                return a / b;
+            } else {
+                return "Cannot divide by zero";
+            }
+        }
+
+        // Performing arithmetic operations
+        const num1 = 10;
+        const num2 = 5;
+
+        document.getElementById("addition").innerText = add(num1, num2);
+        document.getElementById("subtraction").innerText = subtract(num1, num2);
+        document.getElementById("multiplication").innerText = multiply(num1, num2);
+        document.getElementById("division").innerText = divide(num1, num2);
+
+    </script>
+
+    <h1>Image Slideshow</h1>
+    <div class="slideshow-container">
+        <div class="slides">
+            <img src="https://via.placeholder.com/600x300?text=Image+1" alt="Image 1">
+        </div>
+        <div class="slides">
+            <img src="https://via.placeholder.com/600x300?text=Image+2" alt="Image 2">
+        </div>
+        <div class="slides">
+            <img src="https://via.placeholder.com/600x300?text=Image+3" alt="Image 3">
+        </div>
+    </div>
+
+    <button onclick="previousSlide()">&#10094; Previous</button>
+    <button onclick="nextSlide()">Next &#10095;</button>
+
+    <script>
+        let slideIndex = 0;
+
+        function showSlides() {
+            const slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1; 
+            }
+            slides[slideIndex - 1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlidesManually();
+        }
+
+        function previousSlide() {
+            slideIndex--;
+            showSlidesManually();
+        }
+
+        function showSlidesManually() {
+            const slides = document.getElementsByClassName("slides");
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            } 
+            if (slideIndex < 1) {
+                slideIndex = slides.length;
+            }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slides[slideIndex - 1].style.display = "block";  
+        }
+
+        showSlides(); // Initial call to start the slideshow
+    </script>
+
+</body>
+</html>
